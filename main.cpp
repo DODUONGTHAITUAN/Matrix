@@ -78,6 +78,16 @@ public:
     return res;
   }
 
+  // Overloading *
+  Matrix *operator*(Matrix m) {
+    Matrix *res = new Matrix(this->get_rows(), this->get_cols());
+    for (int i = 0; i < this->get_rows(); i++) {
+      for (int j = 0; j < this->get_cols(); j++) {
+        res->arr[i][j] = this->arr[i][j] * m.arr[i][j];
+      }
+    }
+    return res;
+  }
   // Overloading &
   Matrix *operator&(int m) {
     Matrix *res = new Matrix(this->get_rows(), this->get_cols());
@@ -89,6 +99,16 @@ public:
     return res;
   }
 };
+
+void menu() {
+  cout << "======== MENU ==========\n";
+  cout << "1. Cong hai ma tran\n";
+  cout << "2. Tru hai ma tran\n";
+  cout << "3. Tru ma tran voi mot so\n";
+  cout << "4. Nhan hai ma tran\n";
+  cout << "5. Thoat\n";
+  cout << "======= END ===========\n";
+}
 
 int main() {
   Matrix m;
@@ -105,8 +125,42 @@ int main() {
   m.input_arr();
   Matrix n(m);
 
-  Matrix *y = m & 1;
-  y->display_array();
+  bool start = true;
+  while (start) {
+    menu();
+    int options;
+    cout << "Nhap lua chon: ";
+    cin >> options;
+    switch (options) {
+    case 1: {
+      Matrix *x = m + n;
+      x->display_array();
+      break;
+    }
+    case 2: {
+      Matrix *y = m - n;
+      y->display_array();
+      break;
+    }
+    case 3: {
+      int num;
+      cout << "Nhap mot so: ";
+      cin >> num;
+      Matrix *x = m & num;
+      x->display_array();
+      break;
+    }
+    case 4: {
+      Matrix *y = m * n;
+      y->display_array();
+      break;
+    }
+    case 5: {
+      start = false;
+      break;
+    }
+    }
+  }
 
   return 0;
 }
