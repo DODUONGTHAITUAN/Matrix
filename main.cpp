@@ -92,9 +92,16 @@ public:
 
 int main() {
   Matrix m;
-  m.set_rows(2);
-  m.set_cols(3);
+  int rows;
+  int cols;
+  cout << "Nhap dong: ";
+  cin >> rows;
+  cout << "Nhap cot: ";
+  cin >> cols;
+  m.set_rows(rows);
+  m.set_cols(cols);
   m.init();
+  cout << "Nhap phan tu\n";
   m.input_arr();
   Matrix n(m);
 
